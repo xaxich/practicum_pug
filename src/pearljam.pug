@@ -1,0 +1,17 @@
+extends template
+
+block nav
+  div.nav
+    h4.nav__title= title
+    div.nav__menu
+      +createMenu(dictMenu, 'Самая популярная рок группа')
+
+block content
+  div.content
+    div.content__title
+      h2 PEARL JAM
+    div.content__images
+      each image in pearljamImages
+        img(src= require("./images/" + image))
+    div.content__information
+      +createInformation(pearljamInfo)

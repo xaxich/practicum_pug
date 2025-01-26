@@ -1,0 +1,17 @@
+extends template
+
+block nav
+  div.nav
+    h4.nav__title= title
+    div.nav__menu
+      +createMenu(dictMenu, 'Список самых популярных рок групп')
+    
+block content
+  div.content
+    div.content__title
+      h2 Список самых популярных рок групп
+    
+    div.content__information
+      +createFilters()
+      +createList(listInfo.header, listInfo.rows)
+      

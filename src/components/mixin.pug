@@ -1,0 +1,129 @@
+mixin createMenu(menu, active)
+  each value, key in menu
+    if active == key
+      a.nav__menu__button_active(href= value)= key
+    else
+      a.nav__menu__button(href= value)= key
+
+mixin createSection(image, title, text)
+  div.content__article__section
+    img(src= require("./images/" + image))
+    h2= title
+    p= text
+      a(href="#") &hellip;
+  
+mixin createInformation(paragraphs)
+  each txt in paragraphs
+    p= txt
+
+mixin createTopicItem(image, title, text)
+  div.content__topic__item
+      if (title=='Маркус Перссон') 
+        a(href="pearljam.html")
+          img(src= require("./images/" + image))
+      else
+        img(src= require("./images/" + image))
+        
+      h2= title  
+      p= text
+        a(href="#") &hellip;
+
+        
+mixin createGraphSettings()
+  details
+    summary= "График"
+
+    form.content__information__graph-settings
+      label.content__information__graph-settings__column1 Значение по оси Х
+      label.content__information__graph-settings__column2 Результат
+      
+      input(name="x-coord", type="radio", value="Жанр")
+      label Жанр
+
+      input(name="y-coord" type="checkbox", value="Рейтинг")
+      label Рейтинг
+
+      input(name="x-coord", type="radio", value="Страна")
+      label Страна
+
+      input(name="y-coord" type="checkbox", value="Средняя продолжительность")
+      label Средняя продолжительность
+
+      input(name="x-coord" type="radio", value="Год")
+      label Год
+
+      input(name="y-coord" type="checkbox", value="Кол-во прослушиваний")
+      label Кол-во прослушиваний
+      
+
+    input(type="button", name="apply-graph",value="Применить")
+
+mixin createFilterSettings()
+  details
+    summary= "Фильтр"
+    
+    form.content__information__filter-settings
+      div.content__information__filter-settings__row
+        label Название:
+        input(name="name" type="text")
+      div.content__information__filter-settings__row
+        label Жанр:
+        input(name="jenre" type="text")
+      div.content__information__filter-settings__row
+        label Страна:
+        input(name="contry" type="text")
+      div.content__information__filter-settings__row
+        label Год выпуска с:
+        input(name="year-begin" type="text")
+        label до:
+        input(name="year-end" type="text")
+      div.content__information__filter-settings__row
+        label Прослушивания от:
+        input(name="rate-begin" type="text")
+        label до:
+        input(name="rate-end" type="text")
+    input(type="button", name="apply-filter",value="Найти")
+
+mixin createSortSettings()
+  details
+    summary= "Сортировка"
+    
+    form.content__information__sort-settings
+      label Первый уровень:
+      select
+        option Нет
+        option Да
+      label по убыванию?
+      input(name="first-lvl" type="checkbox")
+      
+      label Второй уровень:
+      select
+        option Нет
+        option Да
+      label по убыванию?
+      input(name="second-lvl" type="checkbox")
+      
+      label Третий уровень:
+      select
+        option Нет
+        option Да
+      label по убыванию?
+      input(name="third-lvl" type="checkbox")
+      
+    input(type="button", name="apply-filter",value="Применить")
+
+mixin createFilters()
+  +createGraphSettings()
+  +createFilterSettings()
+  +createSortSettings()
+
+
+mixin createList(header, data)
+  table
+    tr
+      each head in header
+        th= head
+    each row in data
+      tr
+        each cell in row
+          td= cell

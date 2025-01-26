@@ -1,0 +1,16 @@
+extends template
+
+block nav
+  div.nav
+    h4.nav__title= title
+    div.nav__menu
+      +createMenu(dictMenu, 'Главная')
+
+block content
+  
+  div.content
+  
+    div.content__article
+      each item in articles
+        +createSection(item.image, item.title, item.text)
+
